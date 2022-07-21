@@ -1,1 +1,0 @@
-To start finding files you need to write:  search file ( you need to replace file word with a file name you want to look up)
