@@ -1,5 +1,7 @@
 #include <iostream>
+
 #include "explorer.h"
+#include "perfometer.h"
 
 void RemoveFirstSpace(std::string& text)
 {
@@ -26,24 +28,37 @@ void getline(std::string& line)
 
 int main()
 {
+   // Perfometer mainPerf("main");
+
     Explorer explorer(
             {
                     L"D:\\",
                     L"C:\\Users"
-            });
+            },
+            std::wregex(L"\\.(cpp|h|txt)$"));
+
+    //mainPerf.time("explorer started");
 
     std::string command;
     std::string text;
-
     while (command != "exit")
     {
         std::cin >> command;
 
-        if (command == "search")
+        if (command == "file")
         {
             getline(text);
             system("cls");
+            Perfometer perf("search");
             explorer.SearchFile(text);
+        }
+
+        if(command == "text")
+        {
+            getline(text);
+            system("cls");
+            Perfometer perf("search");
+            explorer.SearchText(text);
         }
     }
     return 0;
